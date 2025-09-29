@@ -18,7 +18,7 @@ const TaskList = ({ tasks, updateTask, deleteTask }) => {
       ) : (
         tasks.map((task) => (
           <div
-            key={task._id} // ✅ fixed here
+            key={task._id} 
             style={{
               border: "1px solid #ddd",
               padding: "12px",
@@ -43,7 +43,7 @@ const TaskList = ({ tasks, updateTask, deleteTask }) => {
             <div style={{ marginTop: "8px" }}>
               <select
                 value={task.status}
-                onChange={(e) => updateTask(task._id, { ...task, status: e.target.value })} // ✅ fixed here
+                onChange={(e) => updateTask(task._id, { ...task, status: e.target.value })} 
                 style={{
                   padding: "6px",
                   borderRadius: "6px",
@@ -56,7 +56,7 @@ const TaskList = ({ tasks, updateTask, deleteTask }) => {
                 <option value="completed">Completed</option>
               </select>
               <button
-                onClick={() => deleteTask(task._id)} // ✅ fixed here
+                onClick={() => deleteTask(task._id)} 
                 style={{
                   background: "#e53935",
                   color: "#fff",
