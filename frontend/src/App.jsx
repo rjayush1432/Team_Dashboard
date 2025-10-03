@@ -3,11 +3,13 @@ import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import Metrics from "./components/Metrics";
 
+const API_BASE = "https://team-dashboard-backend.onrender.com/api";  // ✅ backend base URL
+
 const App = () => {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/tasks")
+    fetch(`${API_BASE}/tasks`)
       .then(res => {
         if (!res.ok) throw new Error("Failed to fetch tasks");
         return res.json();
@@ -21,7 +23,7 @@ const App = () => {
   }, [tasks]);
 
   const addTask = async (task) => {
-    const res = await fetch("http://localhost:5000/api/tasks", {
+    const res = await fetch(`${API_BASE}/tasks`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(task),
@@ -31,7 +33,7 @@ const App = () => {
   };
 
   const updateTask = async (id, updatedTask) => {
-    const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
+    const res = await fetch(`${API_BASE}/tasks/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedTask),
@@ -41,7 +43,7 @@ const App = () => {
   };
 
   const deleteTask = async (id) => {
-    await fetch(`http://localhost:5000/api/tasks/${id}`, { method: "DELETE" });
+    await fetch(`${API_BASE}/tasks/${id}`, { method: "DELETE" });
     setTasks(prev => prev.filter(t => t._id !== id));
   };
 
